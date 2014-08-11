@@ -425,7 +425,7 @@ u32 _gzip_handler(s8 *data, u32 offset, u32 idx)
    // compression method:
    printf("\t   %-10s ", "method:");
    switch(gz->cm) {
-      case 8: printf("deflate\n", gz->cm); break;
+      case 8: printf("deflate%d\n", gz->cm); break;
       default: printf("%d\n", gz->cm);
    }
 
