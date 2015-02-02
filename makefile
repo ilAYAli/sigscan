@@ -1,13 +1,12 @@
+CC = gcc
+
 SRCDIR	= ./src
 OBJDIR   = ./obj
 BINDIR	= ./bin
 
-CC = colorgcc
-
-BINARY	= $(BINDIR)/sigscan
-
-INCLUDE	= -I ./include 
-LDFLAGS = 
+BINARY = $(BINDIR)/sigscan
+INCLUDE = -I ./include
+LDFLAGS =
 CFLAGS = -g -Wunused $(INCLUDE)
 
 VPATH = $(SRCDIR)
@@ -23,7 +22,7 @@ $(OBJDIR)/%.o:	%.c
 all:	make_dirs $(BINARY)
 
 $(BINARY): $(OBJECTS)
-	$(CC) -o $@ $^ $(LDFLAGS) 
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 .PHONY:
 clean:
@@ -41,5 +40,5 @@ install: all
 		install -v $(BINARY) ~/bin; \
 	else \
 		sudo install -v $(BINARY) /usr/local/bin; \
-	fi 
+	fi
 

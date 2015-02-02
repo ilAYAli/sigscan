@@ -1,11 +1,12 @@
 // sigscan
-// by petter wahlman, badeip@binary-art.net
+// by petter wahlman, petter@wahlman.no
 // zlib magic (78 9c - 0x14 bytes after start)
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <limits.h>
+#include <ctype.h>
 #include <libgen.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -18,44 +19,45 @@
 #include "../src/cryptoscan.c"
 
 struct signature signatures[] = {
-   { "ARM Interrupt vectors", "vect",
-      "\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5", 20,   0, _vector_handler },
-   { "SHA1",                  "sha1", 
-      "\x01\x23\x45\x67\x89\xab\xcd\xef\xfe\xdc\xba\x98\x76\x54\x32\x10",                 16,    0, _def_handler },
-   { "cpio archive", "cpio",
-      "\x30\x37\x30\x37\x30\x31\x30\x30\x30\x30\x30\x32\x44\x31\x30\x30",                 16,   0, _def_handler },
-   { "Cram FS",               "cfs",      "Compressed ROMFS",                             16, -16, _cramfs_handler }, 
-   { "ROM FS",                "romfs",    "-rom1fs-",                                     8,    0, _romfs_handler },
-   { "Squash FS",             "sqfs",     "hsqs",                                         4,    0, _squashfs_handler },
-   { "BZIP header",           "bz2",      "BZh91AY&SY",                                   10,   0, _def_handler },
+   { "ARM Interrupt vectors",       "vect",
+      "\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5\x18\xf0\x9f\xe5",       20,   0, _vector_handler },
+   { "SHA1",                        "sha1",
+      "\x01\x23\x45\x67\x89\xab\xcd\xef\xfe\xdc\xba\x98\x76\x54\x32\x10",                       16,   0, _def_handler },
+   { "cpio archive",                "cpio",
+      "\x30\x37\x30\x37\x30\x31\x30\x30\x30\x30\x30\x32\x44\x31\x30\x30",                       16,   0, _def_handler },
+   { "Cram FS",                     "cfs",      "Compressed ROMFS",                             16, -16, _cramfs_handler },
+   { "ROM FS",                      "romfs",    "-rom1fs-",                                     8,    0, _romfs_handler },
+   { "Squash FS",                   "sqfs",     "hsqs",                                         4,    0, _squashfs_handler },
+   { "BZIP header",                 "bz2",      "BZh91AY&SY",                                   10,   0, _def_handler },
 #ifndef __APPLE__
-   { "ELF",                   "elf",      "\x7f\x45\x4c\x46",                             4,    0, _elf_handler },
+   { "ELF",                         "elf",      "\x7f\x45\x4c\x46",                             4,    0, _elf_handler },
 #endif
-   { "7-Zip archive",         "7z",       "7z\xbc\xaf\x27\x1c\x00\x02",                   8,    0, _def_handler },
-   { "RAR archive",           "rar",      "Rar!\x1a\x07\x00",                             7,    0, _def_handler },
-   { "ZIP central directory", "zip",      "\x50\x4b\x01\x02",                             4,    0, _zip_central_handler },
-   { "ZIP local header",      "zip",      "PK\x03\x04\x14\x00\x00\x00",                   8,    0, _zip_local_handler },
-   { "ZIP local header",      "zip",      "PKLITE",                                       6,    0, _zip_local_handler },
-   { "ZIP local header",      "zip",      "PKSpX",                                        5,    0, _zip_local_handler },
-   { "ZIP local header",      "zip",      "PK\x03\x04",                                   4,    0, _zip_local_handler },
-   { "u-boot/PPCBoot image",  "uboot",    "\x27\x05\x19\x56", /*Wolfgang's birthday*/     4,    0, _def_handler },
-   { "ISO 9660",              "iso",      "CD001",                                        5,    0, _def_handler },
-   { "TAR archive",           "tar",      "ustar",                                        5, -0x101, _def_handler },
-   { "JFFS2",                 "jffs2",    "\x85\x19\x03\x20",                             4,    0, _def_handler },
-   { "LZMA1",                  "lzma",     "\x5d\x00\x00\x80",                             4,    0, _def_handler },
-   { "LZMA2",                  "lzma",     "\x80\x00\x00\x5d",                             4,    0, _def_handler },
-   { "QEMI QCOW",             "qcow",     "QFI\xfb",                                      4,    0, _def_handler },
-   { "CAB archive",           "cab",      "ISc(",                                         4,    0, _def_handler },
-   { "CAB archive",           "cab",      "MSCF",                                         4,    0, _def_handler },
-   { "uClinux FLAT binary",   "bflt",     "bFLT",                                         4,    0, _def_handler },
-   { "GZIP header",           "gz",       "\x1f\x8b\x08",                                 3,    0, _gzip_handler },
-   { "Mediatek bootloader",   "mtek",     "BOOTLOADER!",                                  11,   0, _mtek },
-   //{ "ELF 32-bit",          "elf",      "\x7f\x45\x4c\x46\x01",                         5,    0, _def_handler },
-   //{ "ELF 64-bit",          "elf",      "\x7f\x45\x4c\x46\x02",                         5,    0, _def_handler },
-   //{ "FMA",                 "fma",      "FMA",                                          3,    0, _def_handler },
-   //{ "TAR.Z",               "tgz",      "\x1f\x9d\x90",                                 3,    0, _def_handler },
-   //{ "LHA/LZA",             "lha",      "\x2d\x6c\x68",                                 3,    0, _def_handler },
-   //{ "ZLIB",                "zlib"      "\x78\x9c",                                     2,    0, _def_handler },
+   { "7-Zip archive",               "7z",       "7z\xbc\xaf\x27\x1c\x00\x02",                   8,    0, _def_handler },
+   { "RAR archive",                 "rar",      "Rar!\x1a\x07\x00",                             7,    0, _def_handler },
+   { "ZIP central directory",       "zip",      "\x50\x4b\x01\x02",                             4,    0, _zip_central_handler },
+   { "ZIP local header",            "zip",      "PK\x03\x04\x14\x00\x00\x00",                   8,    0, _zip_local_handler },
+   { "ZIP local header",            "zip",      "PKLITE",                                       6,    0, _zip_local_handler },
+   { "ZIP local header",            "zip",      "PKSpX",                                        5,    0, _zip_local_handler },
+   { "ZIP local header",            "zip",      "PK\x03\x04",                                   4,    0, _zip_local_handler },
+   { "u-boot/PPCBoot image",        "uboot",    "\x27\x05\x19\x56", /*Wolfgang's birthday*/     4,    0, _def_handler },
+   { "ISO 9660",                    "iso",      "CD001",                                        5,    0, _def_handler },
+   { "TAR archive",                 "tar",      "ustar",                                        5, -0x101, _def_handler },
+   { "JFFS2",                       "jffs2",    "\x85\x19\x03\x20",                             4,    0, _def_handler },
+   { "LZMA1",                       "lzma",     "\x5d\x00\x00\x80",                             4,    0, _def_handler },
+   { "LZMA2",                       "lzma",     "\x80\x00\x00\x5d",                             4,    0, _def_handler },
+   { "QEMI QCOW",                   "qcow",     "QFI\xfb",                                      4,    0, _def_handler },
+   { "CAB archive",                 "cab",      "ISc(",                                         4,    0, _def_handler },
+   { "CAB archive",                 "cab",      "MSCF",                                         4,    0, _def_handler },
+   { "uClinux FLAT binary",         "bflt",     "bFLT",                                         4,    0, _def_handler },
+   { "GZIP header",                 "gz",       "\x1f\x8b\x08",                                 3,    0, _gzip_handler },
+   { "Mediatek bootloader",         "mtek",     "BOOTLOADER!",                                  11,   0, _mtek },
+   { "Portable Network Graphics",   "png",      "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a",             8,    0, _def_handler },
+   //{ "ELF 32-bit",                "elf",      "\x7f\x45\x4c\x46\x01",                         5,    0, _def_handler },
+   //{ "ELF 64-bit",                "elf",      "\x7f\x45\x4c\x46\x02",                         5,    0, _def_handler },
+   //{ "FMA",                       "fma",      "FMA",                                          3,    0, _def_handler },
+   //{ "TAR.Z",                     "tgz",      "\x1f\x9d\x90",                                 3,    0, _def_handler },
+   //{ "LHA/LZA",                   "lha",      "\x2d\x6c\x68",                                 3,    0, _def_handler },
+   //{ "ZLIB",                      "zlib"      "\x78\x9c",                                     2,    0, _def_handler },
 };
 
 
