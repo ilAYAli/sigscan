@@ -52,6 +52,7 @@ struct signature signatures[] = {
    { "GZIP header",                 "gz",       "\x1f\x8b\x08",                                 3,    0, _gzip_handler },
    { "Mediatek bootloader",         "mtek",     "BOOTLOADER!",                                  11,   0, _mtek },
    { "Portable Network Graphics",   "png",      "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a",             8,    0, _def_handler },
+   { "MP3 with ID3v2 container",    "mp3",      "\x49\x44\x33",                                 3,    0, _def_handler },
    //{ "ELF 32-bit",                "elf",      "\x7f\x45\x4c\x46\x01",                         5,    0, _def_handler },
    //{ "ELF 64-bit",                "elf",      "\x7f\x45\x4c\x46\x02",                         5,    0, _def_handler },
    //{ "FMA",                       "fma",      "FMA",                                          3,    0, _def_handler },
