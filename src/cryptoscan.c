@@ -36,22 +36,22 @@ struct array_info_t
 };
 
 //-----------------
-static const u32 zinflate_lengthStarts[] = {
+static const uint32_t zinflate_lengthStarts[] = {
 	3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31,
 	35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258};
-static const u32 zinflate_lengthExtraBits[] = {
+static const uint32_t zinflate_lengthExtraBits[] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2,
 	3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0};
-static const u32 zinflate_distanceStarts[] = {
+static const uint32_t zinflate_distanceStarts[] = {
 	1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193,
 	257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145,
 	8193, 12289, 16385, 24577};
-static const u32 zinflate_distanceExtraBits[] = {
+static const uint32_t zinflate_distanceExtraBits[] = {
 	0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
 	7, 7, 8, 8, 9, 9, 10, 10, 11, 11,
 	12, 12, 13, 13};
 //-----------------
-static const u32 zdeflate_lengthCodes[] = {
+static const uint32_t zdeflate_lengthCodes[] = {
 	257, 258, 259, 260, 261, 262, 263, 264, 265, 265, 266, 266, 267, 267, 268, 268,
 	269, 269, 269, 269, 270, 270, 270, 270, 271, 271, 271, 271, 272, 272, 272, 272,
 	273, 273, 273, 273, 273, 273, 273, 273, 274, 274, 274, 274, 274, 274, 274, 274,
@@ -1182,7 +1182,7 @@ static const byte Twofish_q[2][256] = {
 	  0x55, 0x09, 0xBE, 0x91
 };
 
-static const u32 Twofish_mds[4][256] = {
+static const uint32_t Twofish_mds[4][256] = {
 	0xbcbc3275, 0xecec21f3, 0x202043c6, 0xb3b3c9f4,
 	0xdada03db, 0x02028b7b, 0xe2e22bfb, 0x9e9efac8,
 	0xc9c9ec4a, 0xd4d409d3, 0x18186be6, 0x1e1e9f6b,
@@ -1443,7 +1443,7 @@ static const u32 Twofish_mds[4][256] = {
 	0x9a196f9a, 0xe01a9de0, 0x8f94368f, 0xe6c742e6,
 	0xecc94aec, 0xfdd25efd, 0xab7fc1ab, 0xd8a8e0d8};
 //-----------------
-static const u32 Square_Te[4][256] = {
+static const uint32_t Square_Te[4][256] = {
 {
 0x97b1b126UL, 0x69cecea7UL, 0x73c3c3b0UL, 0xdf95954aUL,
 0xb45a5aeeUL, 0xafadad02UL, 0x3be7e7dcUL, 0x04020206UL,
@@ -1712,7 +1712,7 @@ static const u32 Square_Te[4][256] = {
 0x5555ffaaUL, 0x4c4cd498UL, 0xf7f7ec1bUL, 0xe2e2d331UL,
 }};
 
-static const u32 Square_Td[4][256] = {
+static const uint32_t Square_Td[4][256] = {
 {
 0xe368bc02UL, 0x5585620cUL, 0x2a3f2331UL, 0x61ab13f7UL,
 0x98d46d72UL, 0x21cb9a19UL, 0x3c22a461UL, 0x459d3dcdUL,
@@ -6167,7 +6167,7 @@ static const byte SHARK_iG[8][8] = {
 	0x56, 0xf4, 0xaf, 0x32, 0xd2, 0xa4, 0xdc, 0x71,
 };
 //-----------------
-static const u32 SHA256_K[64] = {
+static const uint32_t SHA256_K[64] = {
 	0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
 	0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
 	0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -6268,7 +6268,7 @@ static const byte SAFER_log_tab[256] =
 
 
 //-----------------
-static const u32 Rijndael_Te0[256] = {
+static const uint32_t Rijndael_Te0[256] = {
 	   0xc66363a5U, 0xf87c7c84U, 0xee777799U, 0xf67b7b8dU,
 	   0xfff2f20dU, 0xd66b6bbdU, 0xde6f6fb1U, 0x91c5c554U,
 	   0x60303050U, 0x02010103U, 0xce6767a9U, 0x562b2b7dU,
@@ -6334,7 +6334,7 @@ static const u32 Rijndael_Te0[256] = {
 	   0x824141c3U, 0x299999b0U, 0x5a2d2d77U, 0x1e0f0f11U,
 	   0x7bb0b0cbU, 0xa85454fcU, 0x6dbbbbd6U, 0x2c16163aU,
 };
-static const u32 Rijndael_Te1[256] = {
+static const uint32_t Rijndael_Te1[256] = {
 	   0xa5c66363U, 0x84f87c7cU, 0x99ee7777U, 0x8df67b7bU,
 	   0x0dfff2f2U, 0xbdd66b6bU, 0xb1de6f6fU, 0x5491c5c5U,
 	   0x50603030U, 0x03020101U, 0xa9ce6767U, 0x7d562b2bU,
@@ -6400,7 +6400,7 @@ static const u32 Rijndael_Te1[256] = {
 	   0xc3824141U, 0xb0299999U, 0x775a2d2dU, 0x111e0f0fU,
 	   0xcb7bb0b0U, 0xfca85454U, 0xd66dbbbbU, 0x3a2c1616U,
 };
-static const u32 Rijndael_Te2[256] = {
+static const uint32_t Rijndael_Te2[256] = {
 	   0x63a5c663U, 0x7c84f87cU, 0x7799ee77U, 0x7b8df67bU,
 	   0xf20dfff2U, 0x6bbdd66bU, 0x6fb1de6fU, 0xc55491c5U,
 	   0x30506030U, 0x01030201U, 0x67a9ce67U, 0x2b7d562bU,
@@ -6467,7 +6467,7 @@ static const u32 Rijndael_Te2[256] = {
 	   0xb0cb7bb0U, 0x54fca854U, 0xbbd66dbbU, 0x163a2c16U,
 };
 
-static const u32 Rijndael_Te3[256] = {
+static const uint32_t Rijndael_Te3[256] = {
 	   0x6363a5c6U, 0x7c7c84f8U, 0x777799eeU, 0x7b7b8df6U,
 	   0xf2f20dffU, 0x6b6bbdd6U, 0x6f6fb1deU, 0xc5c55491U,
 	   0x30305060U, 0x01010302U, 0x6767a9ceU, 0x2b2b7d56U,
@@ -6534,7 +6534,7 @@ static const u32 Rijndael_Te3[256] = {
 	   0xb0b0cb7bU, 0x5454fca8U, 0xbbbbd66dU, 0x16163a2cU,
 };
 
-static const u32 Rijndael_Te4[256] = {
+static const uint32_t Rijndael_Te4[256] = {
 	   0x63636363U, 0x7c7c7c7cU, 0x77777777U, 0x7b7b7b7bU,
 	   0xf2f2f2f2U, 0x6b6b6b6bU, 0x6f6f6f6fU, 0xc5c5c5c5U,
 	   0x30303030U, 0x01010101U, 0x67676767U, 0x2b2b2b2bU,
@@ -6601,7 +6601,7 @@ static const u32 Rijndael_Te4[256] = {
 	   0xb0b0b0b0U, 0x54545454U, 0xbbbbbbbbU, 0x16161616U,
 };
 
-static const u32 Rijndael_Td0[256] = {
+static const uint32_t Rijndael_Td0[256] = {
 	   0x51f4a750U, 0x7e416553U, 0x1a17a4c3U, 0x3a275e96U,
 	   0x3bab6bcbU, 0x1f9d45f1U, 0xacfa58abU, 0x4be30393U,
 	   0x2030fa55U, 0xad766df6U, 0x88cc7691U, 0xf5024c25U,
@@ -6668,7 +6668,7 @@ static const u32 Rijndael_Td0[256] = {
 	   0x7bcb8461U, 0xd532b670U, 0x486c5c74U, 0xd0b85742U,
 };
 
-static const u32 Rijndael_Td1[256] = {
+static const uint32_t Rijndael_Td1[256] = {
 	   0x5051f4a7U, 0x537e4165U, 0xc31a17a4U, 0x963a275eU,
 	   0xcb3bab6bU, 0xf11f9d45U, 0xabacfa58U, 0x934be303U,
 	   0x552030faU, 0xf6ad766dU, 0x9188cc76U, 0x25f5024cU,
@@ -6735,7 +6735,7 @@ static const u32 Rijndael_Td1[256] = {
 	   0x617bcb84U, 0x70d532b6U, 0x74486c5cU, 0x42d0b857U,
 };
 
-static const u32 Rijndael_Td2[256] = {
+static const uint32_t Rijndael_Td2[256] = {
 	   0xa75051f4U, 0x65537e41U, 0xa4c31a17U, 0x5e963a27U,
 	   0x6bcb3babU, 0x45f11f9dU, 0x58abacfaU, 0x03934be3U,
 	   0xfa552030U, 0x6df6ad76U, 0x769188ccU, 0x4c25f502U,
@@ -6803,7 +6803,7 @@ static const u32 Rijndael_Td2[256] = {
 	   0x84617bcbU, 0xb670d532U, 0x5c74486cU, 0x5742d0b8U,
 };
 
-static const u32 Rijndael_Td3[256] = {
+static const uint32_t Rijndael_Td3[256] = {
 	   0xf4a75051U, 0x4165537eU, 0x17a4c31aU, 0x275e963aU,
 	   0xab6bcb3bU, 0x9d45f11fU, 0xfa58abacU, 0xe303934bU,
 	   0x30fa5520U, 0x766df6adU, 0xcc769188U, 0x024c25f5U,
@@ -6870,7 +6870,7 @@ static const u32 Rijndael_Td3[256] = {
 	   0xcb84617bU, 0x32b670d5U, 0x6c5c7448U, 0xb85742d0U,
 };
 
-static const u32 Rijndael_Td4[256] = {
+static const uint32_t Rijndael_Td4[256] = {
 	   0x52525252U, 0x09090909U, 0x6a6a6a6aU, 0xd5d5d5d5U,
 	   0x30303030U, 0x36363636U, 0xa5a5a5a5U, 0x38383838U,
 	   0xbfbfbfbfU, 0x40404040U, 0xa3a3a3a3U, 0x9e9e9e9eU,
@@ -6964,7 +6964,7 @@ static const byte PKCS_DigestDecoration_SHA256[] = {0x30,0x31,0x30,0x0d,0x06,0x0
 static const byte PKCS_DigestDecoration_SHA384[] = {0x30,0x41,0x30,0x0d,0x06,0x09,0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x02,0x02,0x05,0x00,0x04,0x30};
 static const byte PKCS_DigestDecoration_SHA512[] = {0x30,0x51,0x30,0x0d,0x06,0x09,0x60,0x86,0x48,0x01,0x65,0x03,0x04,0x02,0x03,0x05,0x00,0x04,0x40};
 //--------------------
-static const u32 MD5MAC_T[12] =
+static const uint32_t MD5MAC_T[12] =
 	{ 0xac45ef97,0xcd430f29,0x551b7e45,0x3411801c,
 	  0x96ce77b1,0x7c8e722e,0x0aab5a5f,0x18be4336,
 	  0x21b4219d,0x4db987bc,0xbd279da2,0xc3d75bc7 };
@@ -6991,7 +6991,7 @@ static const byte MD2_S[256] = {
 };
 
 //-----------------
-static const u32 MARS_Sbox[512] = {
+static const uint32_t MARS_Sbox[512] = {
 	 0x09d0c479, 0x28c8ffe0, 0x84aa6c39, 0x9dad7287,
 	 0x7dff9be3, 0xd4268361, 0xc96da1d4, 0x7974cc93,
 	 0x85d0582e, 0x2a4b5705, 0x1ca16a62, 0xc3bd279d,
@@ -7123,30 +7123,30 @@ static const u32 MARS_Sbox[512] = {
 };
 //--------------
 
-static const u32 HAVAL_wi2[32] = { 5,14,26,18,11,28, 7,16, 0,23,20,22, 1,10, 4, 8,30, 3,21, 9,17,24,29, 6,19,12,15,13, 2,25,31,27};
-static const u32 HAVAL_wi3[32] = {19, 9, 4,20,28,17, 8,22,29,14,25,12,24,30,16,26,31,15, 7, 3, 1, 0,18,27,13, 6,21,10,23,11, 5, 2};
-static const u32 HAVAL_wi4[32] = {24, 4, 0,14, 2, 7,28,23,26, 6,30,20,18,25,19, 3,22,11,31,21, 8,27,12, 9, 1,29, 5,15,17,10,16,13};
-static const u32 HAVAL_wi5[32] = {27, 3,21,26,17,11,20,29,19, 0,12, 7,13, 8,31,10, 5, 9,14,30,18, 6,28,24, 2,23,16,22, 4, 1,25,15};
+static const uint32_t HAVAL_wi2[32] = { 5,14,26,18,11,28, 7,16, 0,23,20,22, 1,10, 4, 8,30, 3,21, 9,17,24,29, 6,19,12,15,13, 2,25,31,27};
+static const uint32_t HAVAL_wi3[32] = {19, 9, 4,20,28,17, 8,22,29,14,25,12,24,30,16,26,31,15, 7, 3, 1, 0,18,27,13, 6,21,10,23,11, 5, 2};
+static const uint32_t HAVAL_wi4[32] = {24, 4, 0,14, 2, 7,28,23,26, 6,30,20,18,25,19, 3,22,11,31,21, 8,27,12, 9, 1,29, 5,15,17,10,16,13};
+static const uint32_t HAVAL_wi5[32] = {27, 3,21,26,17,11,20,29,19, 0,12, 7,13, 8,31,10, 5, 9,14,30,18, 6,28,24, 2,23,16,22, 4, 1,25,15};
 
-static const u32 HAVAL_mc2[32] = {
+static const uint32_t HAVAL_mc2[32] = {
 	 0x452821E6, 0x38D01377, 0xBE5466CF, 0x34E90C6C, 0xC0AC29B7, 0xC97C50DD, 0x3F84D5B5, 0xB5470917
 , 0x9216D5D9, 0x8979FB1B, 0xD1310BA6, 0x98DFB5AC, 0x2FFD72DB, 0xD01ADFB7, 0xB8E1AFED, 0x6A267E96
 , 0xBA7C9045, 0xF12C7F99, 0x24A19947, 0xB3916CF7, 0x0801F2E2, 0x858EFC16, 0x636920D8, 0x71574E69
 , 0xA458FEA3, 0xF4933D7E, 0x0D95748F, 0x728EB658, 0x718BCD58, 0x82154AEE, 0x7B54A41D, 0xC25A59B5};
 
-static const u32 HAVAL_mc3[32] = {
+static const uint32_t HAVAL_mc3[32] = {
 0x9C30D539,0x2AF26013,0xC5D1B023,0x286085F0,0xCA417918,0xB8DB38EF,0x8E79DCB0,0x603A180E,
 0x6C9E0E8B,0xB01E8A3E,0xD71577C1,0xBD314B27,0x78AF2FDA,0x55605C60,0xE65525F3,0xAA55AB94,
 0x57489862,0x63E81440,0x55CA396A,0x2AAB10B6,0xB4CC5C34,0x1141E8CE,0xA15486AF,0x7C72E993,
 0xB3EE1411,0x636FBC2A,0x2BA9C55D,0x741831F6,0xCE5C3E16,0x9B87931E,0xAFD6BA33,0x6C24CF5C};
 
-static const u32 HAVAL_mc4[32] = {
+static const uint32_t HAVAL_mc4[32] = {
 0x7A325381,0x28958677,0x3B8F4898,0x6B4BB9AF,0xC4BFE81B,0x66282193,0x61D809CC,0xFB21A991,
 0x487CAC60,0x5DEC8032,0xEF845D5D,0xE98575B1,0xDC262302,0xEB651B88,0x23893E81,0xD396ACC5,
 0x0F6D6FF3,0x83F44239,0x2E0B4482,0xA4842004,0x69C8F04A,0x9E1F9B5E,0x21C66842,0xF6E96C9A,
 0x670C9C61,0xABD388F0,0x6A51A0D2,0xD8542F68,0x960FA728,0xAB5133A3,0x6EEF0B6C,0x137A3BE4};
 
-static const u32 HAVAL_mc5[32] = {
+static const uint32_t HAVAL_mc5[32] = {
 0xBA3BF050,0x7EFB2A98,0xA1F1651D,0x39AF0176,0x66CA593E,0x82430E88,0x8CEE8619,0x456F9FB4,
 0x7D84A5C3,0x3B8B5EBE,0xE06F75D8,0x85C12073,0x401A449F,0x56C16AA6,0x4ED3AA62,0x363F7706,
 0x1BFEDF72,0x429B023D,0x37D0D724,0xD00A1248,0xDB0FEAD3,0x49F1C09B,0x075372C9,0x80991B7B,
@@ -7164,7 +7164,7 @@ static const byte GOST_sBox[8][16]={
 	{1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12}};
 
 //------------
-static const u32 RawDES_Spbox[8][64] = {
+static const uint32_t RawDES_Spbox[8][64] = {
 {
 0x01010400,0x00000000,0x00010000,0x01010404, 0x01010004,0x00010404,0x00000004,0x00010000,
 0x00000400,0x01010400,0x01010404,0x00000400, 0x01000404,0x01010004,0x01000000,0x00000004,
@@ -7360,7 +7360,7 @@ static const byte DES_pc2[] = {
 	   46, 42, 50, 36, 29, 32
 };
 //-----------------
-static const u32 CRC32_m_tab[] = {
+static const uint32_t CRC32_m_tab[] = {
 #ifdef IS_LITTLE_ENDIAN
 	0x00000000L, 0x77073096L, 0xee0e612cL, 0x990951baL, 0x076dc419L,
 	0x706af48fL, 0xe963a535L, 0x9e6495a3L, 0x0edb8832L, 0x79dcb8a4L,
@@ -7472,7 +7472,7 @@ static const u32 CRC32_m_tab[] = {
 
 //-----------------
 
-static const u32 CAST_S[8][256] = {
+static const uint32_t CAST_S[8][256] = {
 {
 	0x30FB40D4UL, 0x9FA0FF0BUL, 0x6BECCD2FUL, 0x3F258C7AUL,
 	0x1E213F2FUL, 0x9C004DD3UL, 0x6003E540UL, 0xCF9FC949UL,
@@ -8012,7 +8012,7 @@ static const u32 CAST_S[8][256] = {
 //-----------------
 // The following CAST-256 implementation was contributed by Leonard Janke
 
-static const u32 CAST256_t_m[8][24]={
+static const uint32_t CAST256_t_m[8][24]={
 {	0x5a827999, 0xd151d6a1, 0x482133a9, 0xbef090b1, 0x35bfedb9, 0xac8f4ac1,
 	0x235ea7c9, 0x9a2e04d1, 0x10fd61d9, 0x87ccbee1, 0xfe9c1be9, 0x756b78f1,
 	0xec3ad5f9, 0x630a3301, 0xd9d99009, 0x50a8ed11, 0xc7784a19, 0x3e47a721,
@@ -8047,7 +8047,7 @@ static const u32 CAST256_t_m[8][24]={
 	0xbd0c7590, 0x33dbd298, 0xaaab2fa0, 0x217a8ca8, 0x9849e9b0, 0x0f1946b8}
 };
 
-static const u32 CAST256_t_r[8][24]={
+static const uint32_t CAST256_t_r[8][24]={
 	{19, 27, 3, 11, 19, 27, 3, 11, 19, 27, 3, 11, 19, 27, 3, 11, 19, 27, 3, 11, 19, 27, 3, 11},
 	{4, 12, 20, 28, 4, 12, 20, 28, 4, 12, 20, 28, 4, 12, 20, 28, 4, 12, 20, 28, 4, 12, 20, 28},
 	{21, 29, 5, 13, 21, 29, 5, 13, 21, 29, 5, 13, 21, 29, 5, 13, 21, 29, 5, 13, 21, 29, 5, 13},
@@ -8141,7 +8141,7 @@ static const byte Camellia_s4[256] =
 };
 //-------------------
 
-static const u32 Blowfish_p_init[] =
+static const uint32_t Blowfish_p_init[] =
 {
     608135816U, 2242054355U,  320440878U,   57701188U,
    2752067618U,  698298832U,  137296536U, 3964562569U,
@@ -8150,7 +8150,7 @@ static const u32 Blowfish_p_init[] =
    2450970073U, 2306472731U
 };
 
-static const u32 Blowfish_s_init[4*256] = {
+static const uint32_t Blowfish_s_init[4*256] = {
 	3509652390U, 2564797868U,  805139163U, 3491422135U,
 	3101798381U, 1780907670U, 3128725573U, 4046225305U,
 	 614570311U, 3012652279U,  134345442U, 2240740374U,
@@ -8413,16 +8413,16 @@ static const u32 Blowfish_s_init[4*256] = {
 };
 //----------------
 
-static const u32 SHA_1[] = {
+static const uint32_t SHA_1[] = {
    0x67452301L, 0xEFCDAB89L, 0x98BADCFEL, 0x10325476L, 0xC3D2E1F0L,
 };
 
-static const u32 RC5_RC6[] = {
+static const uint32_t RC5_RC6[] = {
    0xb7e15163L,    // magic constant P for wordsize
    0x9e3779b9L,    // magic constant Q for wordsize
 };
 
-static const u32 MD5[] = {
+static const uint32_t MD5[] = {
    0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
    0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be, 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
    0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa, 0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
@@ -8433,11 +8433,11 @@ static const u32 MD5[] = {
    0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1, 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391,
 };
 
-static const u32 MD4[] = {
+static const uint32_t MD4[] = {
    0x67452301L, 0xefcdab89L, 0x98badcfeL, 0x10325476L,
 };
 
-static const u32 HAVAL[] = {
+static const uint32_t HAVAL[] = {
    0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344, 0xA4093822, 0x299F31D0, 0x082EFA98, 0xEC4E6C89,
 };
 

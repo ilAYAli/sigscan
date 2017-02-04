@@ -64,7 +64,7 @@ struct signature signatures[] = {
 
 static void print_signatures(void)
 {
-   s32 i;
+   int i;
 
    printf("\ncontainers (data):\n");
    for (i = 0; i < sizeof(signatures)/sizeof(signatures[0]); i++)  {
@@ -102,10 +102,9 @@ static void print_usage(void)
 int main(int argc, char **argv)
 {
    struct stat st;
-   s8 *addr;
-   s32 fd;
-   s32 i, j, ac;
-   s32 opts = 0;
+   int fd;
+   int i, j, ac;
+   int opts = 0;
    if (argc < 2)
       print_usage();
 
@@ -134,7 +133,7 @@ int main(int argc, char **argv)
          continue;
 
       if (S_ISLNK(st.st_mode)) {
-         s8 path[PATH_MAX+1];
+         char path[PATH_MAX+1];
          readlink(argv[ac], path, PATH_MAX+1);
          //printf("symbolic link to \"%s\"\n", path);
          continue;
@@ -153,7 +152,7 @@ int main(int argc, char **argv)
 
       //fstat(fd, &st);
 
-      addr = mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+      char *addr = mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
       close(fd);
       if (-1 == (long)addr) {
          printf("error: %s\n", strerror(errno));
@@ -167,11 +166,11 @@ int main(int argc, char **argv)
                if ((i + signatures[j].magic_len) >= st.st_size)
                   continue;
                if (!memcmp(&addr[i], signatures[j].magic, signatures[j].magic_len)) {
-                  u32 inc;
+                  uint32_t inc;
                   inc = signatures[j].callback(addr, i + signatures[j].magic_offset, j);
                   if (!inc)
                      continue;
-                 //print_magic(signatures[j].magic, signatures[j].magic_len); 
+                 //print_magic(signatures[j].magic, signatures[j].magic_len);
                   if (opts & OPT_BAT)
                      printf("\tbat -s 0x%08x %s %s.0x%08x.%s", i + signatures[j].magic_offset, argv[ac],
                         basename(argv[ac]), i + signatures[j].magic_offset, signatures[j].ext);
@@ -186,11 +185,11 @@ int main(int argc, char **argv)
                if ((i + crypto_signatures[j].size) >= st.st_size)
                   continue;
                if (!memcmp(&addr[i], crypto_signatures[j].array, crypto_signatures[j].size)) {
-                  printf("\n\t0x%08x: [type: code, len: %.4zd]  %s\n", 
-                     i, 
-                     crypto_signatures[j].size, 
+                  printf("\n\t0x%08x: [type: code, len: %.4zd]  %s\n",
+                     i,
+                     crypto_signatures[j].size,
                      crypto_signatures[j].algorithm);
-                  i += crypto_signatures[j].size; 
+                  i += crypto_signatures[j].size;
                }
             }
          }
