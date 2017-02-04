@@ -172,7 +172,7 @@ int main(int argc, char **argv)
                             continue;
                         //print_magic(signatures[j].magic, signatures[j].magic_len);
                         if (opts & OPT_BAT)
-                            printf("\tbat -s 0x%08x %s %s.0x%08x.%s", i + signatures[j].magic_offset, argv[ac],
+                            printf("\tbat -s 0x%08x %s %s.0x%08x.%s\n\n", i + signatures[j].magic_offset, argv[ac],
                                    basename(argv[ac]), i + signatures[j].magic_offset, signatures[j].ext);
                         //      printf("\n");
                         i += inc;
