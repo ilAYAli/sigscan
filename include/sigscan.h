@@ -8,21 +8,18 @@
 #define VERSION_MINOR   13
 
 typedef unsigned char      u8;
-//typedef char               char;
 typedef unsigned short     u16;
 typedef short              s16;
-//typedef unsigned int       uint32_t;
-//typedef int                int32_t;
 typedef unsigned long long u64;
 typedef long long          s64;
 
 struct signature {
-   char *name;
-   char *ext;
-   char *magic;
-   uint32_t magic_len;
-   int32_t magic_offset;
-   uint32_t (*callback)(char *, uint32_t, uint32_t);
+    char *name;
+    char *ext;
+    char *magic;
+    uint32_t magic_len;
+    int32_t magic_offset;
+    uint32_t (*callback)(char *, uint32_t, uint32_t);
 };
 
 extern struct signature signatures[];

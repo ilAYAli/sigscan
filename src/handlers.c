@@ -199,12 +199,12 @@ struct cramfs_info {
 }__attribute__((packed));
 
 struct cramfs_super {
-    uint32_t magic;			      /* 0x28cd3d45 - random number */
-    uint32_t size;			      /* length in bytes */
-    uint32_t flags;			      /* feature flags */
-    uint32_t future;			      /* reserved for future use */
-    uint8_t signature[16];		   /* "Compressed ROMFS" */
-    struct cramfs_info fsid;/* unique filesystem info */
+    uint32_t magic;         // 0x28cd3d45 - random number
+    uint32_t size;          // length in bytes
+    uint32_t flags;         // feature flags
+    uint32_t future;        // reserved for future use
+    uint8_t signature[16];  // "Compressed ROMFS"
+    struct cramfs_info fsid;// unique filesystem info
     uint8_t name[16];
 }__attribute__((packed));
 
